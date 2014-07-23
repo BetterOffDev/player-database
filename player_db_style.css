@@ -1,0 +1,18 @@
+#scouting_report .inside {
+	background-color: #ffffff;
+}
+
+.video_category_wrapper	{ 
+	width: 110px;
+	min-height: 125px; 
+	padding: 5px 15px 5px 5px; 
+	margin: 0 auto;
+	font-size: 10px;
+	text-align: center;
+}
+
+.video_page_thumb { 
+	width: 100px;
+	margin: 0 auto;
+	padding-bottom: 10px; 
+}
