@@ -15,6 +15,11 @@ function my_admin_head() {
 
 add_action('admin_head', 'my_admin_head');
 
+function get_position_groups() {
+	$positions = array('QB','RB','FB','WR','TE','OT','OG','C','DL','EDGE','LB','CB','S','K','P','LS');
+	return $positions;
+};
+
 /* Create the Player Custom Post Type */
 	
 	
@@ -276,24 +281,15 @@ function player_info_box() {
 		<tr>
 			<td align="center"><input type="text" name="_school" value="<?php echo $school; ?>" size="15" /></td>
 			<td align="center"><select name="_position" id="_position">
-								<option value=""<?php if ($position == '') echo "selected='selected'"; ?>></option>
-								<option value="QB"<?php if ($position == 'QB') echo "selected='selected'"; ?>>QB</option>
-								<option value="RB"<?php if ($position == 'RB') echo "selected='selected'"; ?>>RB</option>
-								<option value="FB"<?php if ($position == 'FB') echo "selected='selected'"; ?>>FB</option>
-								<option value="WR"<?php if ($position == 'WR') echo "selected='selected'"; ?>>WR</option>
-								<option value="TE"<?php if ($position == 'TE') echo "selected='selected'"; ?>>TE</option>
-								<option value="OT"<?php if ($position == 'OT') echo "selected='selected'"; ?>>OT</option>
-								<option value="OG"<?php if ($position == 'OG') echo "selected='selected'"; ?>>OG</option>
-								<option value="C"<?php if ($position == 'C') echo "selected='selected'"; ?>>C</option>
-								<option value="DE"<?php if ($position == 'DE') echo "selected='selected'"; ?>>DE</option>
-								<option value="DT"<?php if ($position == 'DT') echo "selected='selected'"; ?>>DT</option>
-								<option value="OLB"<?php if ($position == 'OLB') echo "selected='selected'"; ?>>OLB</option>
-								<option value="ILB"<?php if ($position == 'ILB') echo "selected='selected'"; ?>>ILB</option>
-								<option value="CB"<?php if ($position == 'CB') echo "selected='selected'"; ?>>CB</option>
-								<option value="S"<?php if ($position == 'S') echo "selected='selected'"; ?>>S</option>
-								<option value="K"<?php if ($position == 'K') echo "selected='selected'"; ?>>K</option>
-								<option value="P"<?php if ($position == 'P') echo "selected='selected'"; ?>>P</option>
-								<option value="LS"<?php if ($position == 'LS') echo "selected='selected'"; ?>>LS</option>
+								<?php $position_groups = get_position_groups(); 
+									foreach($position_groups as $group) {
+										echo '<option value="'.$group.'" ';
+										if ( $position == $group ) {
+											echo 'selected';
+										}
+										echo '>'.$group.'</option>';
+									}
+								?>
 							</select></td>
 			<td align="center"><input type="text" name="_jersey" value="<?php echo $jersey; ?>" size="5" /></td>
 			<td align="center"><select name="_draft_class" id="_draft_class">
@@ -418,7 +414,7 @@ function combine_numbers_box() {
     wp_nonce_field( plugin_basename(__FILE__), 'combinemeta_noncename' );
  
     // Get the data if its already been entered
-        $dash = get_post_meta($post->ID, '_dash', true);
+    $dash = get_post_meta($post->ID, '_dash', true);
 	$height = get_post_meta($post->ID, '_height', true);
 	$weight = get_post_meta($post->ID, '_weight', true);
 	$arm = get_post_meta($post->ID, '_arm', true);
