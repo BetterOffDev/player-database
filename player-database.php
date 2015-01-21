@@ -330,6 +330,7 @@ function player_info_box() {
 								<option value="Shrine Game"<?php if ($allstar == 'Shrine Game') echo "selected='selected'"; ?>>Shrine Game</option>
 								<!-- <option value="Texas vs Nation"<?php if ($allstar == 'Texas vs Nation') echo "selected='selected'"; ?>>Texas vs Nation</option> -->
 								<option value="NFLPA Game"<?php if ($allstar == 'NFLPA Game') echo "selected='selected'"; ?>>NFLPA Game</option>
+								<option value="Medal of Honor Bowl"<?php if ($allstar == 'Medal of Honor Bowl') echo "selected='selected'"; ?>>Medal of Honor Bowl</option>
 							</select></td>
 		</tr>
 	</table>
